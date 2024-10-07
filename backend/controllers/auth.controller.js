@@ -39,7 +39,7 @@ const logIn = async (req, res) => {
         if (!user.active) {
             return res.status(400).json({ message: 'usuario inactivo, contacte al administrador' });
         }
-        const payload = { user: { id: user.id } };
+        const payload = { user: { id: user.id, role: user.role } };
         jwt.sign(
             payload,
             process.env.SECRET,
