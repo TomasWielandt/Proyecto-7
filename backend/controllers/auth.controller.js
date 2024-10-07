@@ -18,7 +18,19 @@ const register = async (req, res) => {
             active,
             role,
         });
-        res.status(201).json(newUser);
+        const payload = { user: { id: user.id, role: user.role } };
+        jwt.sign(
+            payload,
+            process.env.SECRET,
+            {
+                expiresIn: '1h'
+            },
+            (error, token) => {
+                if (error) throw error;
+                res.status(201).json({ newUser, token });
+            }
+        );
+        // res.status(201).json(newUser);
     } catch(error) {
         console.error(error);
         res.status(500).json({ message: 'error al dar de alta al usuario' });
