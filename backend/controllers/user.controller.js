@@ -23,12 +23,12 @@ const readOne = async (req, res) => {
 
 const create = async (req, res) => {
     try {
-      const { name, email, password, active, role } = req.body;
+      const { name, email, password, phone, address, active, role } = req.body;
   
       const salt = await bcryptjs.genSalt(10);
       const hashedPassword = await bcryptjs.hash(password, salt);
   
-      const nuevoUsuario = await User.create({ name, email, password: hashedPassword, active, role });
+      const nuevoUsuario = await User.create({ name, email, password: hashedPassword, phone, address, active, role });
       res.json(nuevoUsuario);
     } catch (error) {
       console.error(error);
@@ -38,12 +38,12 @@ const create = async (req, res) => {
 
   const update = async (req, res) => {
     try {
-      const { name, email, password, active, role } = req.body;
+      const { name, email, password, phone, address, active, role } = req.body;
   
       const salt = await bcryptjs.genSalt(10);
       const hashedPassword = await bcryptjs.hash(password, salt);
   
-      const usuarioActualizado = await User.findByIdAndUpdate(req.params.id, { name, email, password: hashedPassword, active, role }, { new:true });
+      const usuarioActualizado = await User.findByIdAndUpdate(req.params.id, { name, email, password: hashedPassword, phone, address, active, role }, { new:true });
       res.json(usuarioActualizado);
     } catch (error) {
       console.error(error);
