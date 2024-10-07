@@ -13,6 +13,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended:true }));
 
+// ruteo
+const routes = require('./routes');
+app.use(process.env.URL_BASE + "/", routes);
+
 // conexión a la base de datos
 connectDB();
 
