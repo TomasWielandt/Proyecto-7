@@ -7,7 +7,11 @@ require('dotenv').config();
 
 const register = async (req, res) => {
     try {
-        const { name, email, password, active, role } = req.body;
+        const { name, email, password, phone, address, active, role } = req.body;
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ message: 'El correo electrónico ya está en uso.' });
+        }
         const salt = await bcryptjs.genSalt(parseInt(process.env.SALT || 10));
         const hashedPassword = await bcryptjs.hash(password, salt);
 
@@ -15,10 +19,12 @@ const register = async (req, res) => {
             name,
             email,
             password: hashedPassword,
+            phone,
+            address,
             active,
             role,
         });
-        const payload = { user: { id: user.id, role: user.role } };
+        const payload = { user: { id: newUser.id, role: newUser.role } };
         jwt.sign(
             payload,
             process.env.SECRET,
