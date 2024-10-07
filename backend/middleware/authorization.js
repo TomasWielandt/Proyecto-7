@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-module.exports = (requiredRole = 'client') => {
+module.exports = (roles) => {
     return (req, res, next) => {
         let { authorization } = req.headers;
         if (!authorization) {
@@ -13,7 +13,7 @@ module.exports = (requiredRole = 'client') => {
             if (type === 'Token' || type === 'Bearer') {
                 const openToken = jwt.verify(token, process.env.SECRET);
                 req.user = openToken.user;
-                if (openToken.user.role && (openToken.user.role === 'client' || openToken.user.role === 'admin')) {
+                if (roles.includes(req.user.role)) {
                     next();
                 } else {
                     return res.status(403).json({ message: 'Acceso no autorizado' });
