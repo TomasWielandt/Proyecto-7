@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
+// Autorización considerando el rol del usuario
 module.exports = (roles) => {
     return (req, res, next) => {
         let { authorization } = req.headers;

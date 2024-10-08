@@ -43,6 +43,7 @@ const register = async (req, res) => {
     }
 };
 
+// Login considerando si el usuario está activo o no
 const logIn = async (req, res) => {
     const { email, password } = req.body;
     try {
