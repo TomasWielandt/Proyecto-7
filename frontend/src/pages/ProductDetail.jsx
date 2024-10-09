@@ -28,6 +28,7 @@ const ProductDetail = () => {
   }, [productId]);
 
   const addToCart = () => {
+    // console.log('Adding to cart:', product); // Verifica que el producto se está agregando
     dispatch({ type: 'ADD_ITEM', payload: product });
   };
 

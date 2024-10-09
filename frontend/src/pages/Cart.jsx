@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
 import CartContext from '../context/CartContext';
 import PayPalButton from '../components/PayPalButton';
+import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 const Cart = () => {
   const { state, dispatch } = useContext(CartContext);
 
   // Función para calcular el total del carrito
   const calculateTotal = () => {
-    return state.items.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
+    return state.items.reduce((acc, item) => acc + item.price * item.quantity, 0);
   };
 
   // Función para eliminar un artículo del carrito
@@ -41,12 +42,14 @@ const Cart = () => {
             ))}
           </ul>
           <div className="text-right mb-4">
-            <h3 className="text-xl font-bold">Total: ${calculateTotal()}</h3>
+            <h3 className="text-xl font-bold">Total: ${calculateTotal().toFixed(2)}</h3>
           </div>
           
           <div>
             <h2 className="text-2xl mb-4">Finalizar Compra</h2>
-            <PayPalButton total={calculateTotal()} />
+            <PayPalScriptProvider options={{ "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID }}>
+              <PayPalButton total={calculateTotal()} />
+            </PayPalScriptProvider>
           </div>
         </div>
       )}

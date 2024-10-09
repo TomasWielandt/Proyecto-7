@@ -1,5 +1,6 @@
 import React from 'react';
 import { PayPalButtons } from '@paypal/react-paypal-js';
+import PropTypes from 'prop-types';
 
 const PayPalButton = ({ total }) => {
   return (
@@ -20,6 +21,10 @@ const PayPalButton = ({ total }) => {
       }}
     />
   );
+};
+
+PayPalButton.propTypes = {
+  total: PropTypes.number.isRequired, // total debe ser un número y es requerido
 };
 
 export default PayPalButton;
