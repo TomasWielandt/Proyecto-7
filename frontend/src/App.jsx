@@ -8,7 +8,7 @@ import { Routes, Route } from 'react-router-dom';
 // import ProductDetail from './pages/ProductDetail';
 // import Cart from './pages/Cart';
 import Navbar from './components/Navbar';
-// import Footer from './components/Footer';
+import Footer from './components/Footer';
 // import ErrorBoundary from './components/ErrorBoundary';
 
 const App = () => {
