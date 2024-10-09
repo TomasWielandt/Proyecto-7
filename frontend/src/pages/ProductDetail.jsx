@@ -1,16 +1,23 @@
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';  // Importa el hook useParams
 import CartContext from '../context/CartContext';
+import PropTypes from 'prop-types';
 
-const ProductDetail = ({ match }) => {
+const ProductDetail = () => {
   const [product, setProduct] = useState(null);
   const { dispatch } = useContext(CartContext);
-  const productId = match.params.id;
+  
+  // Obtén el ID del producto desde la URL usando useParams
+  const { id: productId } = useParams();
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
+        // console.log(`Fetching product with ID: ${productId}`); // Verifica si productId es correcto
+
         const response = await axios.get(`/api/products/readone/${productId}`);
+        console.log(response.data); // Verifica los datos del producto
         setProduct(response.data);
       } catch (error) {
         console.error('Error fetching product:', error);
@@ -40,6 +47,11 @@ const ProductDetail = ({ match }) => {
       </button>
     </div>
   );
+};
+
+// PropTypes ya no requiere match, así que eliminamos esa validación
+ProductDetail.propTypes = {
+  productId: PropTypes.string // Si quisieras validar algún prop, podrías agregarlo aquí.
 };
 
 export default ProductDetail;
