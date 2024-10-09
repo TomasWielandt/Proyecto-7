@@ -1,35 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import PayPalButton from './components/PayPalButton/PayPalButton';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+    const order = {
+        user: "67046b543c6a64b69981ff28", // ID del usuario autenticado
+        items: [
+            { productId: "67045ebc9a2609b52ec49954", quantity: 2 },
+            { productId: "67055dc2ef3cbffd576f13aa", quantity: 1 },
+        ],
+    };
+    const totalAmount = 1390000; // Cambia esto por el cálculo real del total
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    return (
+        <div>
+            <h1>Realiza tu pago</h1>
+            <PayPalButton totalAmount={totalAmount} order={order} />
+        </div>
+    );
+};
 
-export default App
+export default App;

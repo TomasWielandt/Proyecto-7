@@ -5,10 +5,12 @@ const userRouter = require('./user.routes');
 const authRouter = require('./auth.routes');
 const productRouter = require('./product.routes');
 const orderRouter = require('./order.routes');
+// const paymentRouter = require('./payment.routes');
 
-router.use('/user', userRouter);
-router.use('/user', authRouter);
-router.use('/product', productRouter);
-router.use('/order', orderRouter);
+router.use('/users', userRouter);
+router.use('/users', authRouter);
+router.use('/products', productRouter);
+router.use('/orders', orderRouter);
+// router.use('/paypal', paymentRouter);
 
 module.exports = router;

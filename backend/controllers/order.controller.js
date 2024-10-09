@@ -1,54 +1,76 @@
-// controllers/order.controller.js
 const Order = require('../models/order');
 const Product = require('../models/product');
 
 const createOrder = async (req, res) => {
+    // console.log(req.user)
+    const userId = req.user.id; // Obtener el ID del usuario autenticado desde el middleware
+    const { items } = req.body; // Obtener los items del body
+
     try {
-        const { products } = req.body;
-        const userId = req.user.id;
+        let totalAmount = 0; // Inicializar totalAmount
+        const orderItems = []; // Array para almacenar los items de la orden
 
-        let orderProducts = [];
-        let totalOrderValue = 0;
-
-        for (const item of products) {
-            const product = await Product.findById(item.product);
-
+        // Iterar sobre los items para calcular el total
+        for (const item of items) {
+            const product = await Product.findById(item.productId);
             if (!product) {
-                return res.status(404).json({ message: 'Producto no encontrado' });
+                return res.status(404).json({ message: `Producto con ID ${item.productId} no encontrado.` });
             }
+            totalAmount += product.price * item.quantity; // Calcular el total
 
-            if (item.quantity > product.stock) {
-                return res.status(400).json({ message: `La cantidad solicitada para ${product.name} excede el stock disponible.` });
-            }
-
-            const total = product.price * item.quantity;
-            totalOrderValue += total;
-
-            orderProducts.push({
-                product: product._id,
-                quantity: item.quantity,
-                total: total,
+            // Crear un objeto de item que incluya el producto y el precio
+            orderItems.push({
+                product: product._id, // Asignar la referencia al producto
+                quantity: item.quantity, // Cantidad del producto
+                price: product.price // Asignar el precio del producto
             });
-
-            product.stock -= item.quantity;
-            await product.save();
         }
 
+        // Crear la nueva orden con el totalAmount calculado
         const newOrder = await Order.create({
-            user: userId,
-            products: orderProducts,
+            user: userId, // Asignar el ID del usuario autenticado
+            items: orderItems, // Pasar los items con detalles completos
+            totalAmount // Usar el totalAmount calculado
         });
 
-        res.status(201).json({ newOrder, totalOrderValue });
+        res.status(201).json(newOrder); // Devolver la nueva orden creada
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Error al crear la orden', error });
     }
 };
 
-const readAllOrders = async (req, res) => {
+const getOrder = async (req, res) => {
     try {
-        const orders = await Order.find().populate('user').populate('products.product');
+        const orderId = req.params.id;
+        const userId = req.user.id; // Cambiado de _id a id para consistencia
+
+        // Busca la orden por ID
+        const order = await Order.findById(orderId);
+        
+        if (!order) {
+            return res.status(404).json({ message: 'Orden no encontrada' });
+        }
+
+        // Verifica si el usuario es el dueño de la orden
+        if (!order.user) {
+            return res.status(404).json({ message: 'No se encontró el usuario asociado a la orden' });
+        }
+
+        if (order.user.toString() !== userId) {
+            return res.status(403).json({ message: 'No tienes permiso para acceder a esta orden' });
+        }
+
+        res.json(order);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Error obteniendo la orden', error });
+    }
+};
+
+const getAllOrders = async (req, res) => {
+    try {
+        const orders = await Order.find({});
         res.json({ orders });
     } catch (error) {
         console.error(error);
@@ -56,20 +78,26 @@ const readAllOrders = async (req, res) => {
     }
 };
 
-const readOneOrder = async (req, res) => {
+const updateOrderStatus = async (req, res) => {
     try {
-        const { id } = req.params;
-        const order = await Order.findById(id).populate('user').populate('products.product');
+        const orderId = req.params.id;
+        const { status } = req.body; // Asumiendo que el cuerpo de la solicitud incluye el nuevo estado.
 
-        if (!order) {
+        const updatedOrder = await Order.findByIdAndUpdate(orderId, { status }, { new: true });
+        if (!updatedOrder) {
             return res.status(404).json({ message: 'Orden no encontrada' });
         }
 
-        res.json({ order });
+        res.json(updatedOrder);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Error obteniendo la orden', error });
+        res.status(500).json({ message: 'Error actualizando el estado de la orden' });
     }
 };
 
-module.exports = { createOrder, readAllOrders, readOneOrder };
+module.exports = {
+    createOrder,
+    getOrder,
+    getAllOrders,
+    updateOrderStatus,
+};

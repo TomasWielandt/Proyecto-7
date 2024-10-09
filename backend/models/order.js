@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
 
-const orderSchema = mongoose.Schema({
+const orderSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'User', // Referencia al modelo de Usuario
         required: true,
     },
-    products: [
+    items: [
         {
             product: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'Product',
+                ref: 'Product', // Referencia al modelo de Producto
                 required: true,
             },
             quantity: {
@@ -18,16 +18,34 @@ const orderSchema = mongoose.Schema({
                 required: true,
                 min: 1,
             },
-            total: {
+            price: {
                 type: Number,
                 required: true,
             },
-        },
+        }
     ],
-    orderDate: {
+    totalAmount: {
+        type: Number,
+        required: true,
+    },
+    status: {
+        type: String,
+        enum: ['pending', 'completed', 'cancelled'],
+        default: 'pending',
+    },
+    createdAt: {
         type: Date,
         default: Date.now,
     },
+    updatedAt: {
+        type: Date,
+        default: Date.now,
+    }
+});
+
+orderSchema.pre('save', function (next) {
+    this.updatedAt = Date.now();
+    next();
 });
 
 const Order = mongoose.model('Order', orderSchema);
