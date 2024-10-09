@@ -6,7 +6,7 @@ import LogIn from './pages/LogIn';
 // import Profile from './pages/Profile';
 import ProductList from './pages/ProductList';
 import ProductDetail from './pages/ProductDetail';
-// import Cart from './pages/Cart';
+import Cart from './pages/Cart';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -22,7 +22,7 @@ const App = () => {
         {/* <Route path="/profile" element={<Profile />} /> */}
         <Route path="/products" element={<ProductList />} />
         <Route path="/product/:id" element={<ProductDetail />} />
-        {/* <Route path="/cart" element={<Cart />} /> */}
+        <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />
     </ErrorBoundary>
