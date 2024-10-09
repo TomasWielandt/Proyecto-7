@@ -10,22 +10,25 @@ import Cart from './pages/Cart';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
+import { CartProvider } from './context/CartContext';
 
 const App = () => {
   return (
-    <ErrorBoundary>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<LogIn />} />
-        {/* <Route path="/profile" element={<Profile />} /> */}
-        <Route path="/products" element={<ProductList />} />
-        <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
-      <Footer />
-    </ErrorBoundary>
+    <CartProvider>
+      <ErrorBoundary>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<LogIn />} />
+          {/* <Route path="/profile" element={<Profile />} /> */}
+          <Route path="/products" element={<ProductList />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+        <Footer />
+      </ErrorBoundary>
+    </CartProvider>
   );
 };
 
