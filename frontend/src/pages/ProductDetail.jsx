@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
+import CartContext from '../context/CartContext';
 
 const ProductDetail = ({ match }) => {
   const [product, setProduct] = useState(null);
+  const { dispatch } = useContext(CartContext);
   const productId = match.params.id;
 
   useEffect(() => {
@@ -18,6 +20,10 @@ const ProductDetail = ({ match }) => {
     fetchProduct();
   }, [productId]);
 
+  const addToCart = () => {
+    dispatch({ type: 'ADD_ITEM', payload: product });
+  };
+
   if (!product) return <div>Cargando...</div>;
 
   return (
@@ -25,8 +31,13 @@ const ProductDetail = ({ match }) => {
       <h2 className="text-2xl">{product.name}</h2>
       <img src={product.image} alt={product.name} className="w-full h-64 object-cover" />
       <p>{product.description}</p>
-      <p className="font-bold">Precio: {product.price}</p>
-      {/* Aquí puedes agregar un botón para agregar al carrito */}
+      <p className="font-bold">Precio: ${product.price}</p>
+      <button 
+        className="bg-blue-500 text-white p-2 mt-4"
+        onClick={addToCart}
+      >
+        Agregar al Carrito
+      </button>
     </div>
   );
 };
