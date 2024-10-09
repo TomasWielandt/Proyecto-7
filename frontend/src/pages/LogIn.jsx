@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const SignUp = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+const LogIn = () => {
+  const [formData, setFormData] = useState({ email: '', password: '' });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -12,22 +12,21 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/users/register', formData);
+      const response = await axios.post('/api/users/login', formData);
       console.log(response.data);
     } catch (error) {
-      console.error('Error registering user:', error);
+      console.error('Error logging in:', error);
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-10">
-      <h2 className="text-2xl mb-4">Sign Up</h2>
-      <input type="text" name="name" placeholder="Nombre" onChange={handleChange} required className="border p-2 w-full mb-4" />
+      <h2 className="text-2xl mb-4">Log In</h2>
       <input type="email" name="email" placeholder="Email" onChange={handleChange} required className="border p-2 w-full mb-4" />
       <input type="password" name="password" placeholder="Contraseña" onChange={handleChange} required className="border p-2 w-full mb-4" />
-      <button type="submit" className="bg-blue-500 text-white p-2 w-full">Crear Cuenta</button>
+      <button type="submit" className="bg-blue-500 text-white p-2 w-full">Iniciar Sesión</button>
     </form>
   );
 };
 
-export default SignUp;
+export default LogIn;
