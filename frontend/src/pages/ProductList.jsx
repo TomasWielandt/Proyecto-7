@@ -9,7 +9,8 @@ const ProductList = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get('/api/products/readall');
-        setProducts(response.data);
+        // console.log('Response data:', response.data); // Agrega esto para ver la respuesta
+        setProducts(response.data.products);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
