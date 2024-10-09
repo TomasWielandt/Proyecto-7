@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-// import SignUp from './pages/SignUp';
+import SignUp from './pages/SignUp';
 // import LogIn from './pages/LogIn';
 // import Profile from './pages/Profile';
 // import ProductList from './pages/ProductList';
@@ -17,8 +17,8 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<LogIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        {/* <Route path="/login" element={<LogIn />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/products" element={<ProductList />} />
         <Route path="/product/:id" element={<ProductDetail />} />
