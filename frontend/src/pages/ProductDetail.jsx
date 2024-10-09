@@ -18,7 +18,7 @@ const ProductDetail = () => {
 
         const response = await axios.get(`/api/products/readone/${productId}`);
         console.log(response.data); // Verifica los datos del producto
-        setProduct(response.data);
+        setProduct(response.data.product);
       } catch (error) {
         console.error('Error fetching product:', error);
       }
