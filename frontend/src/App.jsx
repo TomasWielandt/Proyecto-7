@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
 // import Profile from './pages/Profile';
-// import ProductList from './pages/ProductList';
+import ProductList from './pages/ProductList';
 // import ProductDetail from './pages/ProductDetail';
 // import Cart from './pages/Cart';
 import Navbar from './components/Navbar';
@@ -19,9 +19,9 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<LogIn />} />
-        {/* <Route path="/profile" element={<Profile />} />
+        {/* <Route path="/profile" element={<Profile />} /> */}
         <Route path="/products" element={<ProductList />} />
-        <Route path="/product/:id" element={<ProductDetail />} />
+        {/* <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} /> */}
       </Routes>
       <Footer />
