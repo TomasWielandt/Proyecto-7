@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const LogIn = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate(); // Usamos useNavigate para la redirección
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,11 +24,11 @@ const LogIn = () => {
       // Almacenar el token en localStorage
       localStorage.setItem('token', token);
 
+      // Verificar que el token fue guardado correctamente
       console.log('Token guardado en localStorage:', token);
       
-      // Redirigir al usuario o mostrar mensaje de éxito
-      // window.location.href = '/dashboard'; // Ejemplo de redirección
-
+      // Redirigir al usuario a la página de inicio ("/")
+      navigate('/'); // Cambiado a redirigir a la página de inicio
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
 
