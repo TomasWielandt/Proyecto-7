@@ -16,6 +16,19 @@ const Cart = () => {
     dispatch({ type: 'REMOVE_ITEM', payload: id });
   };
 
+  // Función para aumentar la cantidad
+  const increaseQuantity = (id, stock) => {
+    dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity: Math.min(stock, state.items.find(item => item._id === id).quantity + 1) } });
+  };
+
+  // Función para disminuir la cantidad
+  const decreaseQuantity = (id) => {
+    const item = state.items.find(item => item._id === id);
+    if (item.quantity > 1) {
+      dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity: item.quantity - 1 } });
+    }
+  };
+
   return (
     <div className="p-4">
       <h1 className="text-3xl mb-4">Tu Carrito</h1>
@@ -29,7 +42,21 @@ const Cart = () => {
               <li key={item._id} className="flex justify-between mb-2">
                 <div>
                   <h2 className="text-lg">{item.name}</h2>
-                  <p>Cantidad: {item.quantity}</p>
+                  <div className="flex items-center">
+                    <button 
+                      className="bg-gray-200 p-1 rounded-l" 
+                      onClick={() => decreaseQuantity(item._id)}
+                    >
+                      -
+                    </button>
+                    <span className="px-2">{item.quantity}</span>
+                    <button 
+                      className="bg-gray-200 p-1 rounded-r" 
+                      onClick={() => increaseQuantity(item._id, item.stock)} // Usar `stock` en lugar de `availableQuantity`
+                    >
+                      +
+                    </button>
+                  </div>
                   <p>Precio: ${item.price.toFixed(2)}</p>
                 </div>
                 <button 
