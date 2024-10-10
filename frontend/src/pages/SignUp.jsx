@@ -44,9 +44,16 @@ const SignUp = () => {
         address
       });
 
-      // Redirigir al usuario tras el registro exitoso
+      // Guardar el token en localStorage
+      const token = response.data.token;
+      localStorage.setItem('token', token);
+
+      // Verificar que el token fue guardado correctamente
+      console.log('Token guardado en localStorage:', token);
+
+      // Redirigir al usuario a la página de inicio
       if (response.status === 201) {
-        navigate('/login');
+        navigate('/');
       }
     } catch (err) {
       if (err.response && err.response.data.message) {
