@@ -48,7 +48,7 @@ const Cart = () => {
           <div>
             <h2 className="text-2xl mb-4">Finalizar Compra</h2>
             <PayPalScriptProvider options={{ "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID }}>
-              <PayPalButton total={calculateTotal()} />
+              <PayPalButton total={calculateTotal()} items={state.items} />
             </PayPalScriptProvider>
           </div>
         </div>
