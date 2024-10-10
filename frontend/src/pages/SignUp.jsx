@@ -51,6 +51,9 @@ const SignUp = () => {
       // Verificar que el token fue guardado correctamente
       console.log('Token guardado en localStorage:', token);
 
+      // Mostrar alerta de éxito
+      alert('Usuario registrado exitosamente');
+
       // Redirigir al usuario a la página de inicio
       if (response.status === 201) {
         navigate('/');
