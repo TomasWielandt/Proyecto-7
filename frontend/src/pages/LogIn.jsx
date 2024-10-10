@@ -26,6 +26,9 @@ const LogIn = () => {
 
       // Verificar que el token fue guardado correctamente
       console.log('Token guardado en localStorage:', token);
+
+      // Mostrar alerta de éxito
+      alert('Inicio de sesión exitosa');
       
       // Redirigir al usuario a la página de inicio ("/")
       navigate('/'); // Cambiado a redirigir a la página de inicio
