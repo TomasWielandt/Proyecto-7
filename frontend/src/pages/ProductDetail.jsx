@@ -1,3 +1,4 @@
+// src/pages/ProductDetail.jsx
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -41,8 +42,9 @@ const ProductDetail = () => {
       />
       <p className="mb-4">{product.description}</p>
       <p className="font-bold text-xl mb-4">Precio: ${product.price}</p>
+      {/* Botón para agregar al carrito sin w-full */}
       <button 
-        className="bg-blue-500 text-white px-4 py-2 rounded"
+        className="p-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600 transition"
         onClick={addToCart}
       >
         Agregar al Carrito
