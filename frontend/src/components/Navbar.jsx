@@ -41,7 +41,13 @@ const Navbar = () => {
             className="text-white" // Solo visible en pantallas pequeñas
             onClick={toggleMenu}
           >
-            {isOpen ? 'Cerrar' : (
+            {isOpen ? (
+              <img 
+                src="https://res.cloudinary.com/dfxlipbvl/image/upload/v1728675823/close_17878910_iset83.png" 
+                alt="Cerrar" 
+                className="h-8 w-auto"
+              />
+            ) : (
               <img 
                 src="https://res.cloudinary.com/dfxlipbvl/image/upload/v1728674751/list_17025562_htxjxv.png" 
                 alt="Menú" 
