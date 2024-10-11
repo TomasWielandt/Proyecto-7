@@ -9,7 +9,6 @@ const ProductList = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get('/api/products/readall');
-        // console.log('Response data:', response.data); // Agrega esto para ver la respuesta
         setProducts(response.data.products);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -20,10 +19,13 @@ const ProductList = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-3 gap-4 p-4">
-      {products.map(product => (
-        <ProductCard key={product._id} product={product} />
-      ))}
+    <div className="min-h-screen p-6">
+      <h1 className="text-3xl mb-6 font-bold text-center">Productos</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {products.map(product => (
+          <ProductCard key={product._id} product={product} />
+        ))}
+      </div>
     </div>
   );
 };
