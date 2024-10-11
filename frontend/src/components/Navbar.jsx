@@ -11,9 +11,16 @@ const Navbar = () => {
   return (
     <nav className="bg-gray-800 p-4">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 items-center gap-4">
+        
         {/* Sección del logo (columna 1) */}
-        <div className="text-white text-xl font-bold col-span-1">
-          <Link to="/">Logo</Link>
+        <div className="col-span-1">
+          <Link to="/">
+            <img 
+              src="https://res.cloudinary.com/dfxlipbvl/image/upload/v1728668663/control-de-juego_uqtiep.png" 
+              alt="Logo" 
+              className="h-10 w-auto"
+            />
+          </Link>
         </div>
 
         {/* Sección de la barra de búsqueda (columna 2) */}
@@ -38,12 +45,12 @@ const Navbar = () => {
 
         {/* Sección de enlaces de navegación (col-span 3 y 4) */}
         <ul className={`col-span-2 md:flex md:justify-end md:space-x-6 items-center ${isOpen ? 'flex flex-col' : 'hidden md:flex'} bg-gray-800 md:bg-transparent`}>
-          <li className="py-2 md:py-0"><Link to="/" className="text-white">Inicio</Link></li>
+          {/* <li className="py-2 md:py-0"><Link to="/" className="text-white">Home</Link></li> */}
           <li className="py-2 md:py-0"><Link to="/signup" className="text-white">Sign Up</Link></li>
           <li className="py-2 md:py-0"><Link to="/login" className="text-white">Log In</Link></li>
-          <li className="py-2 md:py-0"><Link to="/products" className="text-white">Productos</Link></li>
-          <li className="py-2 md:py-0"><Link to="/profile" className="text-white">Mi Perfil</Link></li>
-          <li className="py-2 md:py-0"><Link to="/cart" className="text-white">Carro</Link></li>
+          <li className="py-2 md:py-0"><Link to="/products" className="text-white">Products</Link></li>
+          <li className="py-2 md:py-0"><Link to="/profile" className="text-white">Profile</Link></li>
+          <li className="py-2 md:py-0"><Link to="/cart" className="text-white">Cart</Link></li>
         </ul>
       </div>
     </nav>
