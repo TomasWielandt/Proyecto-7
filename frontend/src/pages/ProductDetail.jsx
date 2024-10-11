@@ -1,4 +1,3 @@
-// src/pages/ProductDetail.jsx
 import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -8,7 +7,6 @@ import PropTypes from 'prop-types';
 const ProductDetail = () => {
   const [product, setProduct] = useState(null);
   const { dispatch } = useContext(CartContext);
-  
   const { id: productId } = useParams();
 
   useEffect(() => {
@@ -26,8 +24,15 @@ const ProductDetail = () => {
   }, [productId]);
 
   const addToCart = () => {
-    dispatch({ type: 'ADD_ITEM', payload: product });
-    alert(`${product.name} ha sido agregado al carrito!`);
+    // Verificar si el producto tiene stock
+    if (product.stock > 0) {
+      // Si hay stock, agregar el producto al carrito
+      dispatch({ type: 'ADD_ITEM', payload: product });
+      alert(`${product.name} ha sido agregado al carrito!`);
+    } else {
+      // Si no hay stock, mostrar alerta
+      alert('Producto no disponible');
+    }
   };
 
   if (!product) return <div>Cargando...</div>;
@@ -42,7 +47,8 @@ const ProductDetail = () => {
       />
       <p className="mb-4">{product.description}</p>
       <p className="font-bold text-xl mb-4">Precio: ${product.price}</p>
-      {/* Botón para agregar al carrito sin w-full */}
+      <p className="font-bold text-lg mb-4">Stock: {product.stock}</p> {/* Mostrar el stock actual */}
+      {/* Botón para agregar al carrito */}
       <button 
         className="p-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600 transition"
         onClick={addToCart}
