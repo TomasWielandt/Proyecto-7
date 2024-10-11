@@ -32,13 +32,17 @@ const ProductDetail = () => {
   if (!product) return <div>Cargando...</div>;
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl">{product.name}</h2>
-      <img src={product.imageUrl} alt={product.name} className="w-full h-64 object-cover" />
-      <p>{product.description}</p>
-      <p className="font-bold">Precio: ${product.price}</p>
+    <div className="p-4 flex flex-col items-center min-h-screen">
+      <h2 className="text-3xl mb-4">{product.name}</h2>
+      <img 
+        src={product.imageUrl} 
+        alt={product.name} 
+        className="w-full max-w-lg h-auto object-contain mb-4"
+      />
+      <p className="mb-4">{product.description}</p>
+      <p className="font-bold text-xl mb-4">Precio: ${product.price}</p>
       <button 
-        className="bg-blue-500 text-white p-2 mt-4"
+        className="bg-blue-500 text-white px-4 py-2 rounded"
         onClick={addToCart}
       >
         Agregar al Carrito
