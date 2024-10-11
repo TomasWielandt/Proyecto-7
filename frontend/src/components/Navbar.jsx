@@ -12,7 +12,7 @@ const Navbar = () => {
         </div>
         
         {/* Sección de enlaces de navegación (centrados) */}
-        <ul className="flex space-x-4">
+        <ul className="flex space-x-16">
           <li><Link to="/" className="text-white">Home</Link></li>
           <li><Link to="/signup" className="text-white">Sign Up</Link></li>
           <li><Link to="/login" className="text-white">Log In</Link></li>
