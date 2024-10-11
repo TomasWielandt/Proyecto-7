@@ -145,7 +145,8 @@ const SignUp = () => {
           />
         </div>
 
-        <button type="submit" className="w-full p-2 bg-blue-500 text-white font-bold rounded">
+        {/* Botón para registrarse con estilo similar al botón de Ver detalles */}
+        <button type="submit" className="w-full p-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600 transition">
           Registrarse
         </button>
       </form>
