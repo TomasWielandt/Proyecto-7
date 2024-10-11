@@ -7,12 +7,11 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Función para obtener el producto específico desde la base de datos
     const fetchProduct = async () => {
       try {
         // Usar la ruta manual con el ID del producto
         const response = await axios.get('/api/products/readone/67045ebc9a2609b52ec49954');
-        console.log('Producto recibido:', response.data); // Verifica que los datos sean correctos
+        console.log('Producto recibido:', response.data);
         setProduct(response.data.product); // Establecer el producto recibido
       } catch (error) {
         console.error('Error al obtener el producto:', error);
@@ -38,10 +37,10 @@ const Home = () => {
         <div className="border p-4 mt-4 rounded shadow-lg">
           <h2 className="text-2xl">{product.name}</h2>
           <p>${product.price}</p>
-          {/* Agregar una imagen si está disponible */}
-          {product.image && (
+          {/* Mostrar la imagen utilizando el campo imageUrl */}
+          {product.imageUrl && (
             <img
-              src={product.image}
+              src={product.imageUrl}
               alt={product.name}
               className="w-full h-auto mt-4"
             />
