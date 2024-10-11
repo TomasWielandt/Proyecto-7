@@ -30,19 +30,19 @@ const Cart = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 flex flex-col items-center">
       <h1 className="text-3xl mb-4">Tu Carrito</h1>
       
       {state.items.length === 0 ? (
         <p>No tienes productos en tu carrito.</p>
       ) : (
-        <div>
+        <div className="w-full">
           <ul className="mb-4">
             {state.items.map(item => (
-              <li key={item._id} className="flex justify-between mb-2">
-                <div>
-                  <h2 className="text-lg">{item.name}</h2>
-                  <div className="flex items-center">
+              <li key={item._id} className="flex flex-col items-center mb-2 border-b pb-2">
+                <div className="flex flex-col items-center">
+                  <h2 className="text-lg text-center">{item.name}</h2>
+                  <div className="flex items-center mb-1">
                     <button 
                       className="bg-gray-200 p-1 rounded-l" 
                       onClick={() => decreaseQuantity(item._id)}
@@ -60,7 +60,7 @@ const Cart = () => {
                   <p>Precio: ${item.price.toFixed(2)}</p>
                 </div>
                 <button 
-                  className="text-red-500" 
+                  className="text-red-500 mt-2" 
                   onClick={() => removeItem(item._id)}
                 >
                   Eliminar
@@ -68,11 +68,12 @@ const Cart = () => {
               </li>
             ))}
           </ul>
-          <div className="text-right mb-4">
-            <h3 className="text-xl font-bold">Total: ${calculateTotal().toFixed(2)}</h3>
+
+          <div className="flex justify-center items-center mb-4">
+            <h3 className="text-xl font-bold mr-4">Total: ${calculateTotal().toFixed(2)}</h3>
           </div>
           
-          <div>
+          <div className="flex flex-col items-center">
             <h2 className="text-2xl mb-4">Finalizar Compra</h2>
             <PayPalScriptProvider options={{ "client-id": import.meta.env.VITE_PAYPAL_CLIENT_ID }}>
               <PayPalButton total={calculateTotal()} items={state.items} />
