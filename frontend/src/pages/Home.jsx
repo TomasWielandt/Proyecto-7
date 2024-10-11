@@ -24,29 +24,29 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="p-4">
+    <div className="flex flex-col justify-center items-center min-h-screen p-4 bg-gray-100">
       <h1 className="text-3xl mb-4">Bienvenido a nuestra tienda</h1>
       <p>¡Explora nuestras ofertas y productos exclusivos!</p>
 
       {/* Mostrar la oferta del producto */}
-      <p className="text-xl font-bold text-red-600">¡OFERTA!</p>
+      <p className="text-xl font-bold text-red-600 mb-4">¡OFERTA!</p>
 
       {loading ? (
         <p>Cargando producto en oferta...</p>
       ) : product ? (
-        <div className="border p-4 mt-4 rounded shadow-lg">
-          <h2 className="text-2xl">{product.name}</h2>
-          <p>${product.price}</p>
+        <div className="border p-4 mt-4 rounded shadow-lg bg-white flex flex-col items-center">
+          <h2 className="text-2xl mb-2">{product.name}</h2>
+          <p className="mb-4 text-lg">${product.price}</p>
           {/* Mostrar la imagen utilizando el campo imageUrl */}
           {product.imageUrl && (
             <img
               src={product.imageUrl}
               alt={product.name}
-              className="w-full h-auto mt-4"
+              className="max-w-xs h-auto mb-4" // Ajustar tamaño de la imagen
             />
           )}
           {/* Enlace para ver detalles del producto */}
-          <Link to={`/products/${product._id}`} className="text-blue-500 mt-4 inline-block">
+          <Link to={`/products/${product._id}`} className="text-blue-500 mt-4">
             Ver detalles
           </Link>
         </div>
