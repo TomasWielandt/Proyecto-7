@@ -18,14 +18,14 @@ const LogIn = () => {
       // Enviar la solicitud de inicio de sesión al backend
       const response = await axios.post('/api/users/login', formData);
       
-      // Obtener el token de la respuesta
-      const { token } = response.data;
-      
-      // Almacenar el token en localStorage
-      localStorage.setItem('token', token);
+      // Obtener el token y el _id de la respuesta
+      const { token, userId } = response.data;
 
-      // Verificar que el token fue guardado correctamente
-      console.log('Token guardado en localStorage:', token);
+      // Almacenar el token y el _id en localStorage
+      localStorage.setItem('token', token);
+      localStorage.setItem('userId', userId);
+
+      console.log('Token y User ID guardados en localStorage:', token, userId);
 
       // Mostrar alerta de éxito
       alert('Inicio de sesión exitosa');

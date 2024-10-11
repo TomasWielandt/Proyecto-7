@@ -2,9 +2,8 @@ const Order = require('../models/order');
 const Product = require('../models/product');
 
 const createOrder = async (req, res) => {
-    // console.log(req.user)
     const userId = req.user.id; // Obtener el ID del usuario autenticado desde el middleware
-    const { items } = req.body; // Obtener los items del body
+    const { items, orderId } = req.body; // Obtener items y el orderId de PayPal
 
     try {
         let totalAmount = 0; // Inicializar totalAmount
@@ -30,7 +29,8 @@ const createOrder = async (req, res) => {
         const newOrder = await Order.create({
             user: userId, // Asignar el ID del usuario autenticado
             items: orderItems, // Pasar los items con detalles completos
-            totalAmount // Usar el totalAmount calculado
+            totalAmount, // Usar el totalAmount calculado
+            paypalOrderId: orderId // Guardar el orderId de PayPal
         });
 
         res.status(201).json(newOrder); // Devolver la nueva orden creada

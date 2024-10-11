@@ -44,12 +44,14 @@ const SignUp = () => {
         address
       });
 
-      // Guardar el token en localStorage
-      const token = response.data.token;
-      localStorage.setItem('token', token);
+      // Obtener el token y el _id del usuario desde la respuesta
+      const { token, userId } = response.data;
 
-      // Verificar que el token fue guardado correctamente
-      console.log('Token guardado en localStorage:', token);
+      // Guardar el token y el _id en localStorage
+      localStorage.setItem('token', token);
+      localStorage.setItem('userId', userId);
+
+      console.log('Token y User ID guardados en localStorage:', token, userId);
 
       // Mostrar alerta de éxito
       alert('Usuario registrado exitosamente');

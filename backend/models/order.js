@@ -28,6 +28,10 @@ const orderSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
+    paypalOrderId: { // Nuevo campo para almacenar el ID de la orden de PayPal
+        type: String,
+        required: true,
+    },
     status: {
         type: String,
         enum: ['pending', 'completed', 'cancelled'],

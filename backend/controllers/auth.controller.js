@@ -33,7 +33,8 @@ const register = async (req, res) => {
             },
             (error, token) => {
                 if (error) throw error;
-                res.status(201).json({ newUser, token });
+                // Aquí devolvemos tanto el token como el _id del nuevo usuario
+                res.status(201).json({ userId: newUser.id, token });
             }
         );
         // res.status(201).json(newUser);
@@ -67,7 +68,7 @@ const logIn = async (req, res) => {
             },
             (error, token) => {
                 if (error) throw error;
-                res.status(200).json({ token });
+                res.status(200).json({ userId: user.id, token });
             }
         );
     } catch(error) {
