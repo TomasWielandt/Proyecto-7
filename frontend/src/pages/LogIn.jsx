@@ -1,3 +1,4 @@
+// src/pages/LogIn.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -68,7 +69,8 @@ const LogIn = () => {
           required
           className="border p-2 w-full mb-4"
         />
-        <button type="submit" className="bg-blue-500 text-white p-2 w-full">
+        {/* Botón para iniciar sesión con el mismo estilo que otros botones */}
+        <button type="submit" className="w-full p-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600 transition">
           Iniciar Sesión
         </button>
       </form>
