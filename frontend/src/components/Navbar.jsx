@@ -38,12 +38,12 @@ const Navbar = () => {
 
         {/* Sección de enlaces de navegación (col-span 3 y 4) */}
         <ul className={`col-span-2 md:flex md:justify-end md:space-x-6 items-center ${isOpen ? 'flex flex-col' : 'hidden md:flex'} bg-gray-800 md:bg-transparent`}>
-          <li className="py-2 md:py-0"><Link to="/" className="text-white">Home</Link></li>
+          <li className="py-2 md:py-0"><Link to="/" className="text-white">Inicio</Link></li>
           <li className="py-2 md:py-0"><Link to="/signup" className="text-white">Sign Up</Link></li>
           <li className="py-2 md:py-0"><Link to="/login" className="text-white">Log In</Link></li>
-          <li className="py-2 md:py-0"><Link to="/products" className="text-white">Products</Link></li>
-          <li className="py-2 md:py-0"><Link to="/profile" className="text-white">Profile</Link></li>
-          <li className="py-2 md:py-0"><Link to="/cart" className="text-white">Cart</Link></li>
+          <li className="py-2 md:py-0"><Link to="/products" className="text-white">Productos</Link></li>
+          <li className="py-2 md:py-0"><Link to="/profile" className="text-white">Mi Perfil</Link></li>
+          <li className="py-2 md:py-0"><Link to="/cart" className="text-white">Carro</Link></li>
         </ul>
       </div>
     </nav>
