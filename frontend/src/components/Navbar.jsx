@@ -49,7 +49,17 @@ const Navbar = () => {
           <li className="py-2 md:py-0"><Link to="/login" className="text-white">Log In</Link></li>
           <li className="py-2 md:py-0"><Link to="/products" className="text-white">Productos</Link></li>
           <li className="py-2 md:py-0"><Link to="/profile" className="text-white">Mi Perfil</Link></li>
-          <li className="py-2 md:py-0"><Link to="/cart" className="text-white">Carrito</Link></li>
+
+          {/* Sección del Carrito (con imagen) */}
+          <li className="py-2 md:py-0">
+            <Link to="/cart" className="inline-block">
+              <img 
+                src="https://res.cloudinary.com/dfxlipbvl/image/upload/v1728673800/add-cart_5733218_eku5le.png" 
+                alt="Carrito" 
+                className="h-8 w-auto"
+              />
+            </Link>
+          </li>
         </ul>
       </div>
     </nav>
