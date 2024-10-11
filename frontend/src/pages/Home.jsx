@@ -45,9 +45,11 @@ const Home = () => {
               className="max-w-xs h-auto mb-4" // Ajustar tamaño de la imagen
             />
           )}
-          {/* Enlace para ver detalles del producto */}
-          <Link to={`/products/${product._id}`} className="text-blue-500 mt-4">
-            Ver detalles
+          {/* Botón para ver detalles del producto */}
+          <Link to={`/products/${product._id}`}>
+            <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+              Ver detalles
+            </button>
           </Link>
         </div>
       ) : (
