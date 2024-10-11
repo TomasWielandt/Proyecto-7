@@ -14,7 +14,7 @@ const Navbar = () => {
         
         {/* Sección del logo (columna 1) */}
         <div className="col-span-1">
-          <Link to="/" className="inline-block">
+          <Link to="/" className="inline-block hover:opacity-75 transition duration-300">
             <img 
               src="https://res.cloudinary.com/dfxlipbvl/image/upload/v1728668663/control-de-juego_uqtiep.png" 
               alt="Logo" 
@@ -30,7 +30,7 @@ const Navbar = () => {
             placeholder="Buscar..." 
             className="p-2 rounded-l-md w-full border-none outline-none"
           />
-          <button className="bg-blue-500 text-white px-4 py-2 rounded-r-md">
+          <button className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition">
             Buscar
           </button>
         </div>
@@ -38,7 +38,7 @@ const Navbar = () => {
         {/* Botón para el menú en pantallas pequeñas (centrado y solo visible en pantallas pequeñas) */}
         <div className="col-span-2 md:hidden flex justify-center"> 
           <button
-            className="text-white" // Solo visible en pantallas pequeñas
+            className="text-white hover:opacity-75 transition duration-300" // Hover en el ícono de menú/cerrar
             onClick={toggleMenu}
           >
             {isOpen ? (
@@ -59,14 +59,30 @@ const Navbar = () => {
 
         {/* Sección de enlaces de navegación (col-span 3 y 4) */}
         <ul className={`col-span-2 md:flex md:justify-end md:space-x-6 items-center ${isOpen ? 'flex flex-col' : 'hidden md:flex'} bg-gray-800 md:bg-transparent`}>
-          <li className="py-2 md:py-0"><Link to="/signup" className="text-white">Sign Up</Link></li>
-          <li className="py-2 md:py-0"><Link to="/login" className="text-white">Log In</Link></li>
-          <li className="py-2 md:py-0"><Link to="/products" className="text-white">Productos</Link></li>
-          <li className="py-2 md:py-0"><Link to="/profile" className="text-white">Mi Perfil</Link></li>
+          <li className="py-2 md:py-0">
+            <Link to="/signup" className="text-white hover:text-blue-500 transition duration-300">
+              Sign Up
+            </Link>
+          </li>
+          <li className="py-2 md:py-0">
+            <Link to="/login" className="text-white hover:text-blue-500 transition duration-300">
+              Log In
+            </Link>
+          </li>
+          <li className="py-2 md:py-0">
+            <Link to="/products" className="text-white hover:text-blue-500 transition duration-300">
+              Productos
+            </Link>
+          </li>
+          <li className="py-2 md:py-0">
+            <Link to="/profile" className="text-white hover:text-blue-500 transition duration-300">
+              Mi Perfil
+            </Link>
+          </li>
 
           {/* Sección del Carrito (con imagen) */}
           <li className="py-2 md:py-0">
-            <Link to="/cart" className="inline-block">
+            <Link to="/cart" className="inline-block hover:opacity-75 transition duration-300">
               <img 
                 src="https://res.cloudinary.com/dfxlipbvl/image/upload/v1728673800/add-cart_5733218_eku5le.png" 
                 alt="Carrito" 
