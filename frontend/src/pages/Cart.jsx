@@ -1,3 +1,4 @@
+// src/pages/Cart.jsx
 import React, { useContext } from 'react';
 import CartContext from '../context/CartContext';
 import PayPalButton from '../components/PayPalButton';
@@ -44,14 +45,14 @@ const Cart = () => {
                   <h2 className="text-lg text-center">{item.name}</h2>
                   <div className="flex items-center mb-1">
                     <button 
-                      className="bg-gray-200 p-1 rounded-l" 
+                      className="bg-gray-200 p-1 rounded-l hover:bg-gray-300 transition" 
                       onClick={() => decreaseQuantity(item._id)}
                     >
                       -
                     </button>
                     <span className="px-2">{item.quantity}</span>
                     <button 
-                      className="bg-gray-200 p-1 rounded-r" 
+                      className="bg-gray-200 p-1 rounded-r hover:bg-gray-300 transition" 
                       onClick={() => increaseQuantity(item._id, item.stock)} // Usar `stock` en lugar de `availableQuantity`
                     >
                       +
@@ -60,7 +61,7 @@ const Cart = () => {
                   <p>Precio: ${item.price.toFixed(2)}</p>
                 </div>
                 <button 
-                  className="text-red-500 mt-2" 
+                  className="bg-red-500 text-white p-2 rounded mt-2 hover:bg-red-600 transition" // Transformado a botón
                   onClick={() => removeItem(item._id)}
                 >
                   Eliminar
