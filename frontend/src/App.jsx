@@ -14,21 +14,25 @@ import { CartProvider } from './context/CartContext';
 
 const App = () => {
   return (
-    <CartProvider>
-      <ErrorBoundary>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/products" element={<ProductList />} />
-          <Route path="/products/:id" element={<ProductDetail />} />
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
-        <Footer />
-      </ErrorBoundary>
-    </CartProvider>
+    <div className="flex flex-col min-h-screen"> {/* Flex container principal */}
+      <CartProvider>
+        <ErrorBoundary>
+          <Navbar /> {/* Navbar siempre arriba */}
+          <div className="flex-grow"> {/* Este contenedor ocupa el espacio disponible entre Navbar y Footer */}
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/login" element={<LogIn />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/products" element={<ProductList />} />
+              <Route path="/products/:id" element={<ProductDetail />} />
+              <Route path="/cart" element={<Cart />} />
+            </Routes>
+          </div>
+          <Footer /> {/* Footer siempre abajo */}
+        </ErrorBoundary>
+      </CartProvider>
+    </div>
   );
 };
 
