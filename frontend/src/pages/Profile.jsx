@@ -109,12 +109,12 @@ const Profile = () => {
               className="border p-2 w-full"
             />
           </div>
-          <button type="submit" className="bg-blue-500 text-white p-2 w-full">
+          <button type="submit" className="w-full p-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600 transition">
             Guardar Cambios
           </button>
           <button
             type="button"
-            className="mt-2 bg-gray-500 text-white p-2 w-full"
+            className="mt-2 bg-gray-500 text-white p-2 w-full hover:bg-gray-600 transition"
             onClick={() => setIsEditing(false)}
           >
             Cancelar
@@ -127,7 +127,7 @@ const Profile = () => {
           <p><strong>Teléfono:</strong> {userData.phone}</p>
           <p><strong>Dirección:</strong> {userData.address}</p>
           <button
-            className="bg-blue-500 text-white p-2 w-full mt-4"
+            className="w-full p-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600 transition"
             onClick={() => setIsEditing(true)}
           >
             Editar Perfil
