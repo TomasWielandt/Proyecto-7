@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'; // Asegúrate de importar Link
 
 const Home = () => {
   const [product, setProduct] = useState(null);
@@ -45,6 +46,10 @@ const Home = () => {
               className="w-full h-auto mt-4"
             />
           )}
+          {/* Enlace para ver detalles del producto */}
+          <Link to={`/products/${product._id}`} className="text-blue-500 mt-4 inline-block">
+            Ver detalles
+          </Link>
         </div>
       ) : (
         <p>No se pudo cargar el producto.</p>
