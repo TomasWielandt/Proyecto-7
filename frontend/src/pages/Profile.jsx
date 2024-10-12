@@ -19,9 +19,8 @@ const Profile = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        // Reemplaza 'userId' con la lógica para obtener el ID del usuario logeado
         const userId = localStorage.getItem('userId'); 
-        console.log('UserID:', userId); // Verificar si el userId es correcto
+        console.log('UserID:', userId);
         const response = await axios.get(`/api/users/readone/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -47,7 +46,7 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userId = localStorage.getItem('userId'); // El ID del usuario logeado
+      const userId = localStorage.getItem('userId');
       await axios.put(`/api/users/update/${userId}`, userData, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -66,74 +65,76 @@ const Profile = () => {
 
   return (
     <div className="max-w-md mx-auto mt-10">
-      <h2 className="text-2xl mb-4">Perfil de Usuario</h2>
-      {isEditing ? (
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-sm font-medium">Nombre</label>
-            <input
-              type="text"
-              name="name"
-              value={userData.name}
-              onChange={handleInputChange}
-              className="border p-2 w-full"
-            />
+      <div className="bg-white border border-gray-300 p-6 rounded-lg shadow-md transition-transform transform hover:shadow-xl">
+        <h2 className="text-2xl mb-4">Perfil de Usuario</h2>
+        {isEditing ? (
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label className="block text-sm font-medium">Nombre</label>
+              <input
+                type="text"
+                name="name"
+                value={userData.name}
+                onChange={handleInputChange}
+                className="border p-2 w-full"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium">Correo Electrónico</label>
+              <input
+                type="email"
+                name="email"
+                value={userData.email}
+                onChange={handleInputChange}
+                className="border p-2 w-full"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium">Teléfono</label>
+              <input
+                type="text"
+                name="phone"
+                value={userData.phone}
+                onChange={handleInputChange}
+                className="border p-2 w-full"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium">Dirección</label>
+              <input
+                type="text"
+                name="address"
+                value={userData.address}
+                onChange={handleInputChange}
+                className="border p-2 w-full"
+              />
+            </div>
+            <button type="submit" className="w-full p-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600 transition">
+              Guardar Cambios
+            </button>
+            <button
+              type="button"
+              className="mt-2 bg-gray-500 text-white p-2 w-full hover:bg-gray-600 transition"
+              onClick={() => setIsEditing(false)}
+            >
+              Cancelar
+            </button>
+          </form>
+        ) : (
+          <div>
+            <p><strong>Nombre:</strong> {userData.name}</p>
+            <p><strong>Email:</strong> {userData.email}</p>
+            <p><strong>Teléfono:</strong> {userData.phone}</p>
+            <p><strong>Dirección:</strong> {userData.address}</p>
+            <button
+              className="w-full p-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600 transition"
+              onClick={() => setIsEditing(true)}
+            >
+              Editar Perfil
+            </button>
           </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium">Correo Electrónico</label>
-            <input
-              type="email"
-              name="email"
-              value={userData.email}
-              onChange={handleInputChange}
-              className="border p-2 w-full"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium">Teléfono</label>
-            <input
-              type="text"
-              name="phone"
-              value={userData.phone}
-              onChange={handleInputChange}
-              className="border p-2 w-full"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium">Dirección</label>
-            <input
-              type="text"
-              name="address"
-              value={userData.address}
-              onChange={handleInputChange}
-              className="border p-2 w-full"
-            />
-          </div>
-          <button type="submit" className="w-full p-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600 transition">
-            Guardar Cambios
-          </button>
-          <button
-            type="button"
-            className="mt-2 bg-gray-500 text-white p-2 w-full hover:bg-gray-600 transition"
-            onClick={() => setIsEditing(false)}
-          >
-            Cancelar
-          </button>
-        </form>
-      ) : (
-        <div>
-          <p><strong>Nombre:</strong> {userData.name}</p>
-          <p><strong>Email:</strong> {userData.email}</p>
-          <p><strong>Teléfono:</strong> {userData.phone}</p>
-          <p><strong>Dirección:</strong> {userData.address}</p>
-          <button
-            className="w-full p-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600 transition"
-            onClick={() => setIsEditing(true)}
-          >
-            Editar Perfil
-          </button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
