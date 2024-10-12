@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false); // Estado para controlar el menú desplegable
+  const navigate = useNavigate(); // Hook para redireccionar
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  // Función para verificar si el usuario está autenticado
+  const isAuthenticated = () => {
+    return localStorage.getItem('token') !== null; // Devuelve true si hay un token almacenado
+  };
+
+  // Función para manejar el cierre de sesión
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // Elimina el token
+    alert('Sesión cerrada con éxito'); // Muestra el alert
+    navigate('/'); // Redirige a la página de inicio
   };
 
   return (
@@ -74,11 +87,27 @@ const Navbar = () => {
               Productos
             </Link>
           </li>
-          <li className="py-2 md:py-0">
-            <Link to="/profile" className="text-white hover:text-blue-500 transition duration-300">
-              Mi Perfil
-            </Link>
-          </li>
+
+          {/* Mostrar "Mi Perfil" solo si el usuario está autenticado */}
+          {isAuthenticated() && (
+            <li className="py-2 md:py-0">
+              <Link to="/profile" className="text-white hover:text-blue-500 transition duration-300">
+                Mi Perfil
+              </Link>
+            </li>
+          )}
+
+          {/* Mostrar "Cerrar Sesión" solo si el usuario está autenticado */}
+          {isAuthenticated() && (
+            <li className="py-2 md:py-0">
+              <button 
+                onClick={handleLogout} 
+                className="text-white hover:text-blue-500 transition duration-300"
+              >
+                Cerrar Sesión
+              </button>
+            </li>
+          )}
 
           {/* Sección del Carrito (con imagen) */}
           <li className="py-2 md:py-0">
