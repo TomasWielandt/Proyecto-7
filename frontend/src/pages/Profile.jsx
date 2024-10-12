@@ -46,19 +46,25 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userId = localStorage.getItem('userId');
-      await axios.put(`/api/users/update/${userId}`, userData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setIsEditing(false);
-      alert('Perfil actualizado con éxito');
+        const userId = localStorage.getItem('userId');
+
+        // Crea un nuevo objeto con solo los campos necesarios para la actualización
+        const { password, ...dataToUpdate } = userData;
+
+        // Envía la actualización sin la contraseña si no se ha proporcionado
+        await axios.put(`/api/users/update/${userId}`, dataToUpdate, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        setIsEditing(false);
+        alert('Perfil actualizado con éxito');
     } catch (err) {
-      console.error(err);
-      setError('Error al actualizar el perfil');
+        console.error(err);
+        setError('Error al actualizar el perfil');
     }
-  };
+};
+
 
   if (loading) return <p>Cargando...</p>;
   if (error) return <p>{error}</p>;
@@ -105,6 +111,15 @@ const Profile = () => {
                 type="text"
                 name="address"
                 value={userData.address}
+                onChange={handleInputChange}
+                className="border p-2 w-full"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium">Nueva Contraseña (opcional)</label>
+              <input
+                type="password"
+                name="password"
                 onChange={handleInputChange}
                 className="border p-2 w-full"
               />

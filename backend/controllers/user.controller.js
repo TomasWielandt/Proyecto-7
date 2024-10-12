@@ -38,18 +38,27 @@ const create = async (req, res) => {
 
   const update = async (req, res) => {
     try {
-      const { name, email, password, phone, address, active, role } = req.body;
-  
-      const salt = await bcryptjs.genSalt(10);
-      const hashedPassword = await bcryptjs.hash(password, salt);
-  
-      const usuarioActualizado = await User.findByIdAndUpdate(req.params.id, { name, email, password: hashedPassword, phone, address, active, role }, { new:true });
-      res.json(usuarioActualizado);
+        const { name, email, password, phone, address, active, role } = req.body;
+
+        // Crea un objeto para las actualizaciones
+        const updates = { name, email, phone, address, active, role };
+
+        // Si se proporciona una nueva contraseña, hashearla
+        if (password) {
+            const salt = await bcryptjs.genSalt(10);
+            updates.password = await bcryptjs.hash(password, salt);
+        }
+
+        // Actualizar el usuario sin sobrescribir la contraseña si no se proporciona una nueva
+        const usuarioActualizado = await User.findByIdAndUpdate(req.params.id, updates, { new: true });
+        res.json(usuarioActualizado);
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'error actualizando un usuario' });
+        console.error(error);
+        res.status(500).json({ message: 'error actualizando un usuario' });
     }
-  };
+};
+
+  
 
   const remove = async (req, res) => {
     try {
