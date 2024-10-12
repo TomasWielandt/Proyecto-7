@@ -1,4 +1,3 @@
-// Home.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -46,7 +45,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen p-4 bg-gray-100">
+    <div className="flex flex-col justify-center items-center min-h-screen">
       <h1 className="text-3xl mb-4">Bienvenido a nuestra tienda</h1>
       <p>¡Explora nuestras ofertas y productos exclusivos!</p>
 
@@ -77,8 +76,8 @@ const Home = () => {
       )}
 
       {/* Sección de productos en oferta */}
-      <div className="bg-gray-100 py-8 w-full">
-        <h2 className="text-2xl font-bold text-green-600 mb-4 text-center">Productos en Oferta</h2> {/* Color cambiado a verde */}
+      <div className="py-8 w-full">
+        <h2 className="text-2xl font-bold text-green-600 mb-4 text-center">Productos en Oferta</h2>
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
             {productosOferta.map((producto) => (

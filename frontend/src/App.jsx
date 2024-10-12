@@ -14,11 +14,16 @@ import { CartProvider } from './context/CartContext';
 
 const App = () => {
   return (
-    <div className="flex flex-col min-h-screen"> {/* Flex container principal */}
+    <div
+      className="flex flex-col min-h-screen bg-repeat bg-center"
+      style={{
+        backgroundImage: `url('https://res.cloudinary.com/dfxlipbvl/image/upload/v1728690299/doodle-gamer-set-ilustracion_166742-67_fgqj2j.avif')`,
+      }}
+    >
       <CartProvider>
         <ErrorBoundary>
           <Navbar /> {/* Navbar siempre arriba */}
-          <div className="flex-grow"> {/* Este contenedor ocupa el espacio disponible entre Navbar y Footer */}
+          <div className="flex-grow bg-white bg-opacity-80"> {/* Añadir un fondo blanco semitransparente */}
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/signup" element={<SignUp />} />
