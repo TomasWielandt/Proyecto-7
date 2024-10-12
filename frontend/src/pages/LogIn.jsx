@@ -14,9 +14,12 @@ const LogIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('Datos del formulario enviados:', formData); // Log para verificar los datos del formulario
+
     try {
       // Enviar la solicitud de inicio de sesión al backend
       const response = await axios.post('/api/users/login', formData);
+      console.log('Respuesta recibida del backend:', response.data); // Log de la respuesta del backend
       
       // Obtener el token y el _id de la respuesta
       const { token, userId } = response.data;
@@ -27,18 +30,14 @@ const LogIn = () => {
 
       console.log('Token y User ID guardados en localStorage:', token, userId);
 
-      // Mostrar alerta de éxito
-      alert('Inicio de sesión exitosa');
-      
-      // Redirigir al usuario a la página de inicio ("/")
-      navigate('/'); // Cambiado a redirigir a la página de inicio
+      // Redirigir al usuario a la página de inicio
+      navigate('/');
     } catch (error) {
-      console.error('Error al iniciar sesión:', error);
-
-      // Mostrar un mensaje de error si ocurre un problema
+      console.error('Error al iniciar sesión:', error); // Log del error si ocurre un problema
       setErrorMessage('Error al iniciar sesión. Verifica tus credenciales.');
     }
-  };
+};
+
 
   return (
     <div className="flex justify-center items-center h-screen">
