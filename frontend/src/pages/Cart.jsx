@@ -32,7 +32,7 @@ const Cart = () => {
 
   return (
     <div className="p-4 flex flex-col items-center">
-      <h1 className="text-3xl mb-4">Tu Carrito</h1>
+      <h1 className="text-3xl text-blue-800 font-bold mb-4">Tu Carrito</h1>
       
       {state.items.length === 0 ? (
         <p>No tienes productos en tu carrito.</p>
@@ -42,7 +42,7 @@ const Cart = () => {
             {state.items.map(item => (
               <li key={item._id} className="flex flex-col items-center mb-2 border-b pb-2">
                 <div className="flex flex-col items-center">
-                  <h2 className="text-lg text-center">{item.name}</h2>
+                  <h2 className="text-lg text-center font-bold">{item.name}</h2> {/* Letras más gruesas */}
                   <div className="flex items-center mb-1">
                     <button 
                       className="bg-gray-200 p-1 rounded-l hover:bg-gray-300 transition" 
