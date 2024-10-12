@@ -1,24 +1,38 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false); // Estado para controlar el menú desplegable
-  const navigate = useNavigate(); // Hook para redireccionar
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState(''); // Estado para el término de búsqueda
+  const [searchResults, setSearchResults] = useState([]); // Estado para almacenar los resultados
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  // Función para verificar si el usuario está autenticado
   const isAuthenticated = () => {
-    return localStorage.getItem('token') !== null; // Devuelve true si hay un token almacenado
+    return localStorage.getItem('token') !== null;
   };
 
-  // Función para manejar el cierre de sesión
   const handleLogout = () => {
-    localStorage.removeItem('token'); // Elimina el token
-    alert('Sesión cerrada con éxito'); // Muestra el alert
-    navigate('/'); // Redirige a la página de inicio
+    localStorage.removeItem('token');
+    alert('Sesión cerrada con éxito');
+    navigate('/');
+  };
+
+  // Función para manejar la búsqueda de productos
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get(`/api/products/search`, {
+        params: { name: searchTerm }, // Se pasa el término de búsqueda como parámetro
+      });
+      setSearchResults(response.data.products);
+      navigate('/search', { state: { searchResults: response.data.products } }); // Redirige a la página de productos con los resultados
+    } catch (error) {
+      console.error('Error buscando productos:', error);
+    }
   };
 
   return (
@@ -42,8 +56,13 @@ const Navbar = () => {
             type="text" 
             placeholder="Buscar..." 
             className="p-2 rounded-l-md w-full border-none outline-none"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)} // Actualiza el estado del término de búsqueda
           />
-          <button className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition">
+          <button 
+            className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition"
+            onClick={handleSearch} // Ejecuta la búsqueda cuando se hace clic en el botón
+          >
             Buscar
           </button>
         </div>

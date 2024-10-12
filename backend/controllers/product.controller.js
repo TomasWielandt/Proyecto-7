@@ -55,4 +55,19 @@ const create = async (req, res) => {
     }
   };
 
-module.exports = { readAll, readOne, create, update, remove };
+  // Función de búsqueda de productos
+const search = async (req, res) => {
+  try {
+    const { name } = req.query;
+
+    // Usamos una expresión regular para ignorar mayúsculas y minúsculas y buscar coincidencias parciales
+    const products = await Product.find({ name: { $regex: name, $options: 'i' } });
+
+    res.json({ products });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error buscando productos', error });
+  }
+};
+
+module.exports = { readAll, readOne, create, update, remove, search };

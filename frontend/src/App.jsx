@@ -7,6 +7,7 @@ import Profile from './pages/Profile';
 import ProductList from './pages/ProductList';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
+import ProductSearch from './pages/ProductSearch'; // Importar ProductSearch
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -32,6 +33,7 @@ const App = () => {
               <Route path="/products" element={<ProductList />} />
               <Route path="/products/:id" element={<ProductDetail />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/search" element={<ProductSearch />} /> {/* Nueva ruta para ProductSearch */}
             </Routes>
           </div>
           <Footer /> {/* Footer siempre abajo */}
