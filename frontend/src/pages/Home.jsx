@@ -46,7 +46,7 @@ const Home = () => {
 
   return (
     <div className="flex flex-col justify-center items-center min-h-screen">
-      <h1 className="text-3xl mb-4">Bienvenido a nuestra tienda</h1>
+      <h1 className="text-4xl font-extrabold text-blue-800 mb-4">Bienvenido a nuestra tienda</h1>
       <p>¡Explora nuestras ofertas y productos exclusivos!</p>
 
       {/* Mostrar la oferta del producto */}
@@ -55,7 +55,7 @@ const Home = () => {
       {loading ? (
         <p>Cargando producto en oferta...</p>
       ) : product ? (
-        <div className="border p-4 mt-4 rounded shadow-lg bg-white flex flex-col items-center">
+        <div className="border p-6 mt-4 rounded shadow-lg bg-white flex flex-col items-center transition-shadow duration-300 hover:shadow-xl">
           <h2 className="text-2xl mb-2">{product.name}</h2>
           <p className="mb-4 text-lg">${product.price}</p>
           {product.imageUrl && (
@@ -81,7 +81,7 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
             {productosOferta.map((producto) => (
-              <div key={producto._id} className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center">
+              <div key={producto._id} className="bg-white border p-6 shadow-lg rounded-lg flex flex-col items-center transition-shadow duration-300 hover:shadow-xl">
                 <img 
                   src={producto.imageUrl} 
                   alt={producto.name} 
@@ -101,7 +101,9 @@ const Home = () => {
       </div>
 
       {/* Agregar el carrusel después de la sección de productos en oferta */}
-      <Carousel />
+      <div className="border p-6 transition-shadow duration-300 hover:shadow-xl">
+        <Carousel />
+      </div>
     </div>
   );
 };
