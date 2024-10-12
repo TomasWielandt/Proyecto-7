@@ -24,6 +24,13 @@ const ProductDetail = () => {
   }, [productId]);
 
   const addToCart = () => {
+    // Verificar si el usuario ha iniciado sesión
+    const token = localStorage.getItem('token');
+    if (!token) {
+      alert('Tienes que iniciar sesión para agregar productos al carrito');
+      return;
+    }
+
     // Verificar si el producto tiene stock
     if (product.stock > 0) {
       // Si hay stock, agregar el producto al carrito
@@ -48,7 +55,7 @@ const ProductDetail = () => {
         />
         <p className="mb-4">{product.description}</p>
         <p className="font-bold text-xl mb-4">Precio: ${product.price}</p>
-        <p className="font-bold text-lg mb-4">Stock: {product.stock}</p> {/* Mostrar el stock actual */}
+        <p className="font-bold text-lg mb-4">Stock: {product.stock}</p>
         {/* Botón para agregar al carrito */}
         <button 
           className="p-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600 transition"
