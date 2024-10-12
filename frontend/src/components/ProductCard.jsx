@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const ProductCard = ({ product }) => {
   return (
-    <div className="border p-4 rounded-lg shadow-lg">
+    <div className="bg-white border border-gray-300 p-4 rounded-lg shadow-md transition-shadow duration-300 hover:shadow-xl">
       {/* Mostrar la imagen utilizando imageUrl */}
       {product.imageUrl && (
         <img 
@@ -13,8 +13,8 @@ const ProductCard = ({ product }) => {
           className="w-full h-80 object-contain" // Aumentamos la altura a 'h-80' para mejorar proporciones
         />
       )}
-      <h3 className="text-lg mt-4">{product.name}</h3>
-      <p>${product.price}</p>
+      <h3 className="text-lg mt-4 font-bold">{product.name}</h3> {/* Añadido font-bold para el nombre */}
+      <p className="font-semibold">${product.price}</p> {/* Añadido font-semibold para el precio */}
       {/* Botón para ver detalles del producto */}
       <Link to={`/products/${product._id}`}>
         <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition mt-4">
@@ -35,3 +35,4 @@ ProductCard.propTypes = {
 };
 
 export default ProductCard;
+
