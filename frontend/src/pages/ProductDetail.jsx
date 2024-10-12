@@ -38,23 +38,25 @@ const ProductDetail = () => {
   if (!product) return <div>Cargando...</div>;
 
   return (
-    <div className="p-4 flex flex-col items-center min-h-screen">
-      <h2 className="text-3xl mb-4">{product.name}</h2>
-      <img 
-        src={product.imageUrl} 
-        alt={product.name} 
-        className="w-full max-w-lg h-auto object-contain mb-4"
-      />
-      <p className="mb-4">{product.description}</p>
-      <p className="font-bold text-xl mb-4">Precio: ${product.price}</p>
-      <p className="font-bold text-lg mb-4">Stock: {product.stock}</p> {/* Mostrar el stock actual */}
-      {/* Botón para agregar al carrito */}
-      <button 
-        className="p-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600 transition"
-        onClick={addToCart}
-      >
-        Agregar al Carrito
-      </button>
+    <div className="flex flex-col items-center min-h-screen p-4">
+      <div className="bg-white border border-gray-300 p-6 rounded-lg shadow-md w-full max-w-lg transition-transform transform hover:shadow-xl">
+        <h2 className="text-3xl font-bold mb-4">{product.name}</h2>
+        <img 
+          src={product.imageUrl} 
+          alt={product.name} 
+          className="w-full h-auto object-contain mb-4"
+        />
+        <p className="mb-4">{product.description}</p>
+        <p className="font-bold text-xl mb-4">Precio: ${product.price}</p>
+        <p className="font-bold text-lg mb-4">Stock: {product.stock}</p> {/* Mostrar el stock actual */}
+        {/* Botón para agregar al carrito */}
+        <button 
+          className="p-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600 transition"
+          onClick={addToCart}
+        >
+          Agregar al Carrito
+        </button>
+      </div>
     </div>
   );
 };
