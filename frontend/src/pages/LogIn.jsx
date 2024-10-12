@@ -1,4 +1,3 @@
-// src/pages/LogIn.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -42,15 +41,18 @@ const LogIn = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10">
-      <h2 className="text-2xl mb-4">Iniciar Sesión</h2>
+    <div className="flex justify-center items-center h-screen">
+      <form 
+        onSubmit={handleSubmit} 
+        className="bg-white p-8 rounded shadow-md w-96 border border-gray-300 transition-shadow duration-300 hover:shadow-xl"
+      >
+        <h2 className="text-2xl font-bold mb-6">Iniciar Sesión</h2>
 
-      {/* Mostrar mensaje de error si existe */}
-      {errorMessage && (
-        <p className="text-red-500 mb-4">{errorMessage}</p>
-      )}
+        {/* Mostrar mensaje de error si existe */}
+        {errorMessage && (
+          <p className="text-red-500 mb-4">{errorMessage}</p>
+        )}
 
-      <form onSubmit={handleSubmit}>
         <input
           type="email"
           name="email"
