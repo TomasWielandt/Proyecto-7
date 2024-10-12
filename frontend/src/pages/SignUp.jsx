@@ -1,4 +1,3 @@
-// src/pages/SignUp.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -71,7 +70,10 @@ const SignUp = () => {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <form onSubmit={handleSubmit} className="bg-white p-8 rounded shadow-md w-96">
+      <form 
+        onSubmit={handleSubmit} 
+        className="bg-white p-8 rounded shadow-md w-96 border border-gray-300 transition-shadow duration-300 hover:shadow-xl"
+      >
         <h2 className="text-2xl font-bold mb-6">Registro</h2>
 
         {error && <p className="text-red-500 mb-4">{error}</p>}
@@ -146,7 +148,10 @@ const SignUp = () => {
         </div>
 
         {/* Botón para registrarse con estilo similar al botón de Ver detalles */}
-        <button type="submit" className="w-full p-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600 transition">
+        <button 
+          type="submit" 
+          className="w-full p-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600 transition"
+        >
           Registrarse
         </button>
       </form>
