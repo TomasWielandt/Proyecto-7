@@ -30,14 +30,16 @@ const LogIn = () => {
 
       console.log('Token y User ID guardados en localStorage:', token, userId);
 
+      // Mostrar alerta de inicio de sesión exitoso
+      alert('¡Login exitoso!');
+
       // Redirigir al usuario a la página de inicio
       navigate('/');
     } catch (error) {
       console.error('Error al iniciar sesión:', error); // Log del error si ocurre un problema
       setErrorMessage('Error al iniciar sesión. Verifica tus credenciales.');
     }
-};
-
+  };
 
   return (
     <div className="flex justify-center items-center h-screen">
