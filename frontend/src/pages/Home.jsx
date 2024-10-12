@@ -55,7 +55,7 @@ const Home = () => {
       {loading ? (
         <p>Cargando producto en oferta...</p>
       ) : product ? (
-        <div className="border p-6 mt-4 rounded shadow-lg bg-white flex flex-col items-center transition-shadow duration-300 hover:shadow-xl">
+        <div className="border border-gray-300 p-6 mt-4 rounded shadow-lg bg-white flex flex-col items-center transition-shadow duration-300 hover:shadow-xl">
           <h2 className="text-2xl mb-2">{product.name}</h2>
           <p className="mb-4 text-lg">${product.price}</p>
           {product.imageUrl && (
@@ -81,7 +81,7 @@ const Home = () => {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
             {productosOferta.map((producto) => (
-              <div key={producto._id} className="bg-white border p-6 shadow-lg rounded-lg flex flex-col items-center transition-shadow duration-300 hover:shadow-xl">
+              <div key={producto._id} className="bg-white border border-gray-300 p-6 shadow-lg rounded-lg flex flex-col items-center transition-shadow duration-300 hover:shadow-xl">
                 <img 
                   src={producto.imageUrl} 
                   alt={producto.name} 
@@ -101,7 +101,7 @@ const Home = () => {
       </div>
 
       {/* Agregar el carrusel después de la sección de productos en oferta */}
-      <div className="border p-6 transition-shadow duration-300 hover:shadow-xl">
+      <div className="w-full py-8 flex justify-center">
         <Carousel />
       </div>
     </div>

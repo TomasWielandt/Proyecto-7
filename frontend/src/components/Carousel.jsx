@@ -60,7 +60,7 @@ const Carousel = () => {
             />
 
             {/* Producto actual */}
-            <div className="p-6 border rounded-lg shadow-lg bg-white flex flex-col items-center mx-auto"> {/* Añadí más padding y redondeado */}
+            <div className="p-6 border border-gray-300 rounded-lg shadow-lg bg-white flex flex-col items-center mx-auto transition-shadow duration-300 hover:shadow-xl"> {/* Aplicar efectos de sombra y borde */}
               <h3 className="text-2xl mb-2">{products[currentIndex].name}</h3>
               <p className="text-lg mb-2">${products[currentIndex].price}</p>
               {products[currentIndex].imageUrl && (
