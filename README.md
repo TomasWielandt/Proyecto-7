@@ -202,6 +202,11 @@ En el carro de compra se puede ver todos los productos que se agregaron. Se pued
 
 [![carrito.png](https://i.postimg.cc/sXWMCwXV/carrito.png)](https://postimg.cc/TLRdrjgS)
 
+### Diseño Responsive
+La página está diseñada para que sea vea bien tanto en pantallas grandes, medias y pequeñas. El navbar cambia su estructura a un menú desplegable y lo posición de los productos se adapta al tamaño de la pantalla.
+
+[![navbar-peque-o.png](https://i.postimg.cc/j5W7WbhK/navbar-peque-o.png)](https://postimg.cc/MMST4g4r)
+
 
 ------------
 
