@@ -1,4 +1,4 @@
-// no se alcanzó a implementar verifytoken, queda pendiente
+// no se alcanzó a implementar verifytoken en el frontend, queda pendiente
 const express = require('express');
 const router = express.Router();
 

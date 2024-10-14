@@ -1,4 +1,4 @@
-// no se pudieron implementar los controles de order ya que no funcionó la conección entre frontend y backend 
+// no se pudieron implementar los controles de order en el frontend ya que no funcionó la conección entre frontend y backend 
 //con paypal, queda pendiente de arregalar
 const Order = require('../models/order');
 const Product = require('../models/product');

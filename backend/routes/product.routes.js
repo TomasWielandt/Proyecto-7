@@ -1,4 +1,4 @@
-// no se alcanzo a implementar las rutas con auth admin, queda pendiente
+// no se alcanzo a implementar las rutas con auth admin en el frontend, queda pendiente
 const express = require('express');
 const router = express.Router();
 
