@@ -1,4 +1,3 @@
-// src/pages/Home.jsx
 import React from 'react';
 import Carousel from '../components/Carousel';
 import ProductOnSale from '../components/ProductOnSale';
@@ -17,7 +16,6 @@ const Home = () => {
       {/* Sección de productos en oferta */}
       <ProductsOnSaleList />
 
-      {/* Agregar el carrusel después de la sección de productos en oferta */}
       <div className="w-full py-8 flex justify-center">
         <Carousel />
       </div>

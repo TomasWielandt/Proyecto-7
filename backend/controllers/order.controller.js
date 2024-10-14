@@ -1,3 +1,5 @@
+// no se pudieron implementar los controles de order ya que no funcionó la conección entre frontend y backend 
+//con paypal, queda pendiente de arregalar
 const Order = require('../models/order');
 const Product = require('../models/product');
 
@@ -43,7 +45,7 @@ const createOrder = async (req, res) => {
 const getOrder = async (req, res) => {
     try {
         const orderId = req.params.id;
-        const userId = req.user.id; // Cambiado de _id a id para consistencia
+        const userId = req.user.id;
 
         // Busca la orden por ID
         const order = await Order.findById(orderId);
@@ -81,7 +83,7 @@ const getAllOrders = async (req, res) => {
 const updateOrderStatus = async (req, res) => {
     try {
         const orderId = req.params.id;
-        const { status } = req.body; // Asumiendo que el cuerpo de la solicitud incluye el nuevo estado.
+        const { status } = req.body;
 
         const updatedOrder = await Order.findByIdAndUpdate(orderId, { status }, { new: true });
         if (!updatedOrder) {

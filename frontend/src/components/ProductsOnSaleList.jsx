@@ -10,7 +10,6 @@ const ProductsOnSaleList = () => {
     const fetchProductos = async () => {
       try {
         const response = await axios.get('/api/products/readall');
-        // Ahora simplemente usamos todos los productos sin filtrar
         setProductos(response.data.products);
       } catch (error) {
         console.error('Error al obtener los productos', error);
@@ -22,7 +21,7 @@ const ProductsOnSaleList = () => {
 
   return (
     <div className="py-8 w-full">
-      <h2 className="text-2xl font-bold text-green-600 mb-4 text-center">Nuestros Productos</h2>
+      <h2 className="text-2xl font-bold text-green-600 mb-4 text-center">Nuevos Productos</h2>
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
           {productos.map((producto) => (

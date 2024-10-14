@@ -6,7 +6,7 @@ import axios from 'axios';
 const PayPalButton = ({ total, items }) => {
   // Obtener el token y el userId de autenticación desde localStorage
   const token = localStorage.getItem('token');
-  const userId = localStorage.getItem('userId'); // Asegúrate de guardar esto cuando el usuario inicie sesión
+  const userId = localStorage.getItem('userId');
 
   // Verificar si el token y userId están disponibles
   if (!token || !userId) {

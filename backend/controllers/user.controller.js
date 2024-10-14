@@ -1,3 +1,4 @@
+// no se alcanzó a implementar readAll, create, y remove, queda pendiente
 const User = require('../models/user');
 const bcryptjs = require('bcryptjs');
 

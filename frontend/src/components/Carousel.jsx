@@ -39,7 +39,6 @@ const Carousel = () => {
         Productos Destacados
       </h2>
 
-      {/* Contenedor del carrusel más grande y centrado */}
       <div className="relative max-w-5xl mx-auto">
         {products.length > 0 && (
           <div className="flex justify-center items-center">

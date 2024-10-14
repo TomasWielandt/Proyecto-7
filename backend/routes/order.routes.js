@@ -1,4 +1,4 @@
-// routes/order.routes.js
+// hubo problemas con create y no se alcanzó a implementar el resto de las rutas, queda pendiente solucionarlo
 const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/authorization');

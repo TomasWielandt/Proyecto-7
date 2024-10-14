@@ -1,4 +1,3 @@
-// backend/config/paypal.js
 const checkoutNodeJssdk = require('@paypal/checkout-server-sdk');
 require('dotenv').config();
 

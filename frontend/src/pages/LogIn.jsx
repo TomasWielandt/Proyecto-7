@@ -72,7 +72,6 @@ const LogIn = () => {
           required
           className="border p-2 w-full mb-4"
         />
-        {/* Botón para iniciar sesión con el mismo estilo que otros botones */}
         <button type="submit" className="w-full p-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-600 transition">
           Iniciar Sesión
         </button>

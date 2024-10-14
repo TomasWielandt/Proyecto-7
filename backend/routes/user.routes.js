@@ -1,3 +1,4 @@
+// no se alcanzó a implementar create, readall y delete, queda pendiente
 const express = require('express');
 const router = express.Router();
 

@@ -1,5 +1,4 @@
 const Product = require('../models/product');
-// const bcryptjs = require('bcryptjs');
 
 const readAll = async (req, res) => {
     try {
