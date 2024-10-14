@@ -1,4 +1,4 @@
-// hubo problemas con las rutas orders, queda pendiente solucionarlo
+// hubo problemas con las rutas orders en el frontend, queda pendiente solucionarlo
 const express = require('express');
 const router = express.Router();
 

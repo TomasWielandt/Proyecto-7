@@ -89,7 +89,7 @@ const logIn = async (req, res) => {
     }
 };
 
-// veifyToken no se alcanzó a implementar, queda pendiente
+// veifyToken no se alcanzó a implementar en el frontend, queda pendiente
 const verifyToken = async (req, res) => {
     try {
       // retorna los datos excluyendo el password

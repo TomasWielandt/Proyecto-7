@@ -1,4 +1,4 @@
-// no se alcanzó a implementar create, readall y delete, queda pendiente
+// no se alcanzó a implementar create, readall y delete en el frontend, queda pendiente
 const express = require('express');
 const router = express.Router();
 
