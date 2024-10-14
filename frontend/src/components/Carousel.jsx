@@ -7,28 +7,18 @@ const Carousel = () => {
   const [products, setProducts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // ID de los productos destacados
-  const productIds = [
-    '67045ebc9a2609b52ec49954',
-    '67055dc2ef3cbffd576f13aa',
-    '67098ef002baab4a307c05ea',
-    '67098f5e02baab4a307c05ec'
-  ];
-
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const fetchedProducts = await Promise.all(
-          productIds.map(id => axios.get(`/api/products/readone/${id}`))
-        );
-        setProducts(fetchedProducts.map(response => response.data.product));
+        const response = await axios.get('/api/products/readall'); // Obtener todos los productos
+        setProducts(response.data.products);
       } catch (error) {
         console.error('Error fetching products:', error);
       }
     };
 
     fetchProducts();
-  }, [productIds]);
+  }, []);
 
   const handlePrevClick = () => {
     setCurrentIndex((prevIndex) =>
@@ -50,7 +40,7 @@ const Carousel = () => {
       </h2>
 
       {/* Contenedor del carrusel más grande y centrado */}
-      <div className="relative max-w-5xl mx-auto"> {/* Cambié max-w-3xl a max-w-5xl para agrandar */}
+      <div className="relative max-w-5xl mx-auto">
         {products.length > 0 && (
           <div className="flex justify-center items-center">
             {/* Flecha izquierda */}
@@ -60,7 +50,7 @@ const Carousel = () => {
             />
 
             {/* Producto actual */}
-            <div className="p-6 border border-gray-300 rounded-lg shadow-lg bg-white flex flex-col items-center mx-auto transition-shadow duration-300 hover:shadow-xl"> {/* Aplicar efectos de sombra y borde */}
+            <div className="p-6 border border-gray-300 rounded-lg shadow-lg bg-white flex flex-col items-center mx-auto transition-shadow duration-300 hover:shadow-xl">
               <h3 className="text-2xl mb-2">{products[currentIndex].name}</h3>
               <p className="text-lg mb-2">${products[currentIndex].price}</p>
               {products[currentIndex].imageUrl && (
