@@ -52,7 +52,7 @@ const Profile = () => {
         const { password, ...dataToUpdate } = userData;
 
         // Envía la actualización sin la contraseña si no se ha proporcionado
-        await axios.put(`/api/users/update/${userId}`, dataToUpdate, {
+        await axios.put(`${import.meta.env.VITE_API_URL}/api/users/update/${userId}`, dataToUpdate, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
