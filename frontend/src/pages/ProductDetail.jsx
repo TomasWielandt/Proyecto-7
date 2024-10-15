@@ -12,7 +12,7 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`/api/products/readone/${productId}`);
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/products/readone/${productId}`);
         console.log(response.data);
         setProduct(response.data.product);
       } catch (error) {

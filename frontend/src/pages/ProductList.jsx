@@ -8,7 +8,7 @@ const ProductList = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('/api/products/readall');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/products/readall`);
         setProducts(response.data.products);
       } catch (error) {
         console.error('Error fetching products:', error);

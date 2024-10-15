@@ -9,7 +9,7 @@ const ProductOnSale = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get('/api/products/readall');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/products/readall`);
         if (response.data.products.length > 0) {
           setProduct(response.data.products[0]); // Mostrar solo el primer producto
         }

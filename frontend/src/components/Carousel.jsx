@@ -10,7 +10,7 @@ const Carousel = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('/api/products/readall'); // Obtener todos los productos
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/products/readall`); // Obtener todos los productos
         setProducts(response.data.products);
       } catch (error) {
         console.error('Error fetching products:', error);
