@@ -19,7 +19,7 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     alert('Sesión cerrada con éxito');
-    navigate('/');
+    navigate('/'); // Redirige a la página de inicio al cerrar sesión
   };
 
   // Función para manejar la búsqueda de productos
