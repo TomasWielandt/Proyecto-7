@@ -38,7 +38,7 @@ const PayPalButton = ({ total, items }) => {
           }
 
           // Enviar la información de la orden al backend, incluyendo el userId
-          const response = await axios.post('/api/orders/create', {
+          const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/orders/create`, {
             userId, // Agregamos el userId al payload
             items, // Pasamos los items del carrito
             orderId: order.id, // Agregamos el ID de la orden de PayPal

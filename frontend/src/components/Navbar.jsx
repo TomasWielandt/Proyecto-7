@@ -25,7 +25,7 @@ const Navbar = () => {
   // Función para manejar la búsqueda de productos
   const handleSearch = async () => {
     try {
-      const response = await axios.get(`/api/products/search`, {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/products/search`, {
         params: { name: searchTerm }, // Se pasa el término de búsqueda como parámetro
       });
       setSearchResults(response.data.products);

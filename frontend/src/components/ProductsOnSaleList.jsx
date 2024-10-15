@@ -9,7 +9,7 @@ const ProductsOnSaleList = () => {
   useEffect(() => {
     const fetchProductos = async () => {
       try {
-        const response = await axios.get('/api/products/readall');
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/products/readall`);
         setProductos(response.data.products);
       } catch (error) {
         console.error('Error al obtener los productos', error);

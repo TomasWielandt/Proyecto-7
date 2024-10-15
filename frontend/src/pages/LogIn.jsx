@@ -18,7 +18,7 @@ const LogIn = () => {
 
     try {
       // Enviar la solicitud de inicio de sesión al backend
-      const response = await axios.post('/api/users/login', formData);
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/login`, formData);
       console.log('Respuesta recibida del backend:', response.data); // Log de la respuesta del backend
       
       // Obtener el token y el _id de la respuesta

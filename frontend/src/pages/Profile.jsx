@@ -21,7 +21,7 @@ const Profile = () => {
       try {
         const userId = localStorage.getItem('userId'); 
         console.log('UserID:', userId);
-        const response = await axios.get(`/api/users/readone/${userId}`, {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/readone/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
